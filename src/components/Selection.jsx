@@ -1,4 +1,4 @@
-export default function Selection({ changeGameStatus, changeDifficulty }) {
+export default function Selection({ changeDifficulty }) {
   return (
     <>
       <div>
@@ -26,15 +26,6 @@ export default function Selection({ changeGameStatus, changeDifficulty }) {
               Hard
             </li>
           </ul>
-        </div>
-        <div className="load">
-          <button
-            onClick={() => {
-              changeGameStatus(true);
-            }}
-          >
-            Start
-          </button>
         </div>
       </div>
     </>

@@ -2,12 +2,18 @@ import { useState } from "react";
 import GetAPokemon from "./Pokemon";
 import { useEffect } from "react";
 
-export default function RenderGame({ difficulty, changeGameStatus }) {
-  const pokemonTotal = 6 * difficulty;
+export default function RenderGame({
+  difficulty,
+  resetGame,
+  totalPoints,
+  addPoint,
+}) {
+  const pokemonTotal = 2 * difficulty;
+  const [currentPoints, setCurrentPoints] = useState(0);
   const [randomPokemons, setRandomPokemons] = useState([]);
   const [pokemonGuesses, setPokemonGuesses] = useState([]);
   const [gameLose, setGameLose] = useState(false);
-  const [points, setPoints] = useState(0);
+  const [renderCount, setRenderCount] = useState(0);
 
   const getUniqueNumber = (range, length) => {
     const number = [];
@@ -22,9 +28,8 @@ export default function RenderGame({ difficulty, changeGameStatus }) {
     }
     return number;
   };
-
   useEffect(() => {
-    const generatePokemons = async () => {
+    (async () => {
       let pokemons = [];
       //809 is upto 7th gen id numbers
       let randomId = getUniqueNumber(809, pokemonTotal);
@@ -42,7 +47,7 @@ export default function RenderGame({ difficulty, changeGameStatus }) {
         pokemons.push(newPokemon);
       }
 
-      return await Promise.all(pokemons)
+      await Promise.all(pokemons)
         .then((results) => {
           {
             setRandomPokemons(results);
@@ -51,18 +56,15 @@ export default function RenderGame({ difficulty, changeGameStatus }) {
         .catch((err) => {
           console.log(err);
         });
-    };
-
-    generatePokemons();
-  }, [pokemonTotal]);
+    })();
+  }, [renderCount]);
 
   const shufflePokemon = (selected) => {
-    console.log(selected);
     if (pokemonGuesses.includes(selected)) {
-      console.log("lose");
       setGameLose(true);
     } else {
-      setPoints(points + 1);
+      addPoint();
+      setCurrentPoints(currentPoints + 1);
       setPokemonGuesses([...pokemonGuesses, selected]);
       const randomArray = getUniqueNumber(
         randomPokemons.length,
@@ -77,13 +79,31 @@ export default function RenderGame({ difficulty, changeGameStatus }) {
       setRandomPokemons([...temp]);
     }
   };
+  const continueGame = () => {
+    setRandomPokemons([]);
+    setRenderCount(renderCount + 1);
+    setGameLose(false);
+    setCurrentPoints(0);
+  };
+
   return (
     <>
       {pokemonTotal}
       <br />
-      {points}
-      {points === pokemonTotal ? (
-        <h1>You win</h1>
+      {totalPoints}
+
+      {currentPoints === pokemonTotal ? (
+        <>
+          {" "}
+          <h1>You win</h1>
+          <button
+            onClick={() => {
+              continueGame();
+            }}
+          >
+            Continue
+          </button>
+        </>
       ) : gameLose ? (
         <h1>You Lose</h1>
       ) : (
@@ -106,7 +126,7 @@ export default function RenderGame({ difficulty, changeGameStatus }) {
 
       <button
         onClick={() => {
-          changeGameStatus(false);
+          resetGame();
         }}
       >
         Reset
