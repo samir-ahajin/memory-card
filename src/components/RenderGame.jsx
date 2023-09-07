@@ -1,6 +1,7 @@
 import { useState } from "react";
 import GetAPokemon from "./Pokemon";
 import { useEffect } from "react";
+import Card from "./Card";
 
 export default function RenderGame({
   difficulty,
@@ -8,12 +9,12 @@ export default function RenderGame({
   totalPoints,
   addPoint,
 }) {
-  const pokemonTotal = 2 * difficulty;
   const [currentPoints, setCurrentPoints] = useState(0);
   const [randomPokemons, setRandomPokemons] = useState([]);
   const [pokemonGuesses, setPokemonGuesses] = useState([]);
   const [gameLose, setGameLose] = useState(false);
-  const [renderCount, setRenderCount] = useState(0);
+  const [renderCount, setRenderCount] = useState(2);
+  const pokemonTotal = renderCount * difficulty;
 
   const getUniqueNumber = (range, length) => {
     const number = [];
@@ -107,18 +108,14 @@ export default function RenderGame({
       ) : gameLose ? (
         <h1>You Lose</h1>
       ) : (
-        <ul>
-          {randomPokemons.map((poke) => {
+        <ul className="cards">
+          {randomPokemons.map((pokemon) => {
             return (
-              <li
-                onClick={() => {
-                  shufflePokemon(poke.id);
-                }}
-                key={poke.id}
-              >
-                {poke.name}
-                <img src={poke.image} alt={poke.name} />
-              </li>
+              <Card
+                key={pokemon.uID}
+                pokemon={pokemon}
+                shufflePokemon={shufflePokemon}
+              />
             );
           })}
         </ul>

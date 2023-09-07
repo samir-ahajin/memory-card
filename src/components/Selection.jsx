@@ -2,12 +2,13 @@ export default function Selection({ changeDifficulty }) {
   return (
     <>
       <div>
-        <div className="options">
+        <div className="options frame">
           <ul>
             <li
               onClick={() => {
                 changeDifficulty(1);
               }}
+              className="selection-button"
             >
               Easy
             </li>
@@ -15,6 +16,7 @@ export default function Selection({ changeDifficulty }) {
               onClick={() => {
                 changeDifficulty(2);
               }}
+              className="selection-button"
             >
               Medium
             </li>
@@ -22,6 +24,7 @@ export default function Selection({ changeDifficulty }) {
               onClick={() => {
                 changeDifficulty(3);
               }}
+              className="selection-button"
             >
               Hard
             </li>

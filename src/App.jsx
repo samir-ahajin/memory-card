@@ -38,14 +38,18 @@ function App() {
             <Selection changeDifficulty={changeDifficulty} />
           )
         ) : (
-          <div className="load">
-            <button
-              onClick={() => {
-                setGame(true);
-              }}
-            >
-              Start
-            </button>
+          <div className="start frame">
+            <ul>
+              <li
+                onClick={() => {
+                  setGame(true);
+                }}
+                className="selection-button"
+              >
+                Start
+              </li>
+              <li className="selection-button">Github Repo</li>
+            </ul>
           </div>
         )}
       </div>

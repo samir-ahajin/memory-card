@@ -1,3 +1,40 @@
+@font-face {
+  font-family: PokemonFont;
+  src: url("./assets/Pokemon-GB.ttf");
+}
 body {
   height: 100vh;
+  font-family: PokemonFont;
+}
+button {
+  font-family: PokemonFont;
+}
+#root {
+  background-image: url("./assets/background-main.gif");
+  height: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.options {
+  padding-left: 50%;
+}
+.frame {
+  position: relative;
+  border-image: url("./assets/frame-hd.png") 42 round;
+  background-color: white;
+  border-width: 21px;
+  border-style: solid;
+  padding: 1rem;
+  width: 100%;
+  max-width: 100%;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
