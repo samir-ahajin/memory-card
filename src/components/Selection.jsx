@@ -1,8 +1,8 @@
 export default function Selection({ changeDifficulty }) {
   return (
     <>
-      <div>
-        <div className="options frame">
+      <div className="center">
+        <div className="start frame">
           <ul>
             <li
               onClick={() => {

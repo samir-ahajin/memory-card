@@ -3,7 +3,8 @@ import { useState } from "react";
 import "./App.css";
 import Selection from "./components/Selection";
 import RenderGame from "./components/RenderGame";
-
+import logo from "./assets/pokemon-logo.png";
+import pokeball from "./assets/pokeball.png";
 function App() {
   const [game, setGame] = useState(false);
   const [levelSelected, setLevelSelected] = useState(false);
@@ -26,6 +27,29 @@ function App() {
   return (
     <>
       <div id="main">
+        <div className="pokemon-design center">
+          <div>
+            <img
+              className="pokemon pokemon-logo"
+              src={logo}
+              alt="Pokemon-Logo"
+            />
+          </div>
+          <div className="title-content">
+            <ul className="titles">
+              <li>
+                <h1 className="game-title">MEMORY-CARD GAME</h1>
+              </li>
+              <li>
+                <img
+                  className="pokemon pokeball rotate"
+                  src={pokeball}
+                  alt="pokeball-image"
+                />
+              </li>
+            </ul>
+          </div>
+        </div>
         {game ? (
           levelSelected ? (
             <RenderGame
@@ -38,18 +62,20 @@ function App() {
             <Selection changeDifficulty={changeDifficulty} />
           )
         ) : (
-          <div className="start frame">
-            <ul>
-              <li
-                onClick={() => {
-                  setGame(true);
-                }}
-                className="selection-button"
-              >
-                Start
-              </li>
-              <li className="selection-button">Github Repo</li>
-            </ul>
+          <div className="center">
+            <div className="start frame">
+              <ul>
+                <li
+                  onClick={() => {
+                    setGame(true);
+                  }}
+                  className="selection-button"
+                >
+                  Start
+                </li>
+                <li className="selection-button">Github Repo</li>
+              </ul>
+            </div>
           </div>
         )}
       </div>

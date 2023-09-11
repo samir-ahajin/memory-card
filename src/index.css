@@ -19,9 +19,7 @@ button {
   justify-content: center;
   align-items: center;
 }
-.options {
-  padding-left: 50%;
-}
+
 .frame {
   position: relative;
   border-image: url("./assets/frame-hd.png") 42 round;
@@ -30,7 +28,7 @@ button {
   border-style: solid;
   padding: 1rem;
   width: 100%;
-  max-width: 100%;
+  max-width: 250px;
 }
 
 .center {

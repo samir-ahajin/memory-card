@@ -1,3 +1,35 @@
+.pokemon-design {
+  width: 100%;
+  margin-bottom: 1rem;
+  position: relative;
+}
+.title-content {
+  z-index: 1;
+  position: absolute;
+  bottom: 5px;
+  left: 43px;
+}
+.titles {
+  display: grid;
+  grid-template-columns: 1fr 50px;
+  justify-items: center;
+  align-items: center;
+}
+.pokeball {
+  max-width: 35px;
+}
+.pokemon-logo {
+  max-width: 300px;
+}
+.game-title {
+  background-color: rgb(41, 41, 41);
+  color: white;
+  padding: 6px;
+  border-radius: 5px;
+  letter-spacing: 2px;
+  font-size: 9px;
+}
+
 .cards {
   display: flex;
   flex-direction: row;
@@ -19,22 +51,27 @@
   border-radius: 8px 8px 0 0;
 }
 .card-image img {
-  width: 80px;
+  width: 100px;
   height: auto;
 }
 
 .card-details {
-  display: flex;
-  justify-content: center;
   font-size: 8px;
   border-radius: 0 0 8px 8px;
   background-color: rgba(255, 255, 255, 0.7);
 }
 .card-details ul {
   display: grid;
+  gap: 3px;
   grid-template-rows: 1fr 1fr;
 }
 
+.start {
+  padding: 2rem;
+}
+.options li {
+  padding-left: 20%;
+}
 .p-name {
   color: #ff4213;
   text-transform: uppercase;
@@ -53,7 +90,7 @@
 .selection-button:focus::before {
   content: "";
   position: absolute;
-  left: -2px;
+  left: -1px;
   width: 2px;
   height: 2px;
   font-size: 2px;
@@ -64,4 +101,16 @@
     3em 3em 0 #181010, 4em 3em 0 #181010, 5em 3em 0 #181010, 1em 4em 0 #181010,
     2em 4em 0 #181010, 3em 4em 0 #181010, 4em 4em 0 #181010, 1em 5em 0 #181010,
     2em 5em 0 #181010, 3em 5em 0 #181010, 1em 6em 0 #181010, 2em 6em 0 #181010;
+}
+
+.rotate {
+  animation: rotation 5s infinite linear;
+}
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
 }

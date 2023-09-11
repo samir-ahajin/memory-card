@@ -89,45 +89,47 @@ export default function RenderGame({
 
   return (
     <>
-      {pokemonTotal}
-      <br />
-      {totalPoints}
+      <div>
+        {pokemonTotal}
+        <br />
+        {totalPoints}
 
-      {currentPoints === pokemonTotal ? (
-        <>
-          {" "}
-          <h1>You win</h1>
-          <button
-            onClick={() => {
-              continueGame();
-            }}
-          >
-            Continue
-          </button>
-        </>
-      ) : gameLose ? (
-        <h1>You Lose</h1>
-      ) : (
-        <ul className="cards">
-          {randomPokemons.map((pokemon) => {
-            return (
-              <Card
-                key={pokemon.uID}
-                pokemon={pokemon}
-                shufflePokemon={shufflePokemon}
-              />
-            );
-          })}
-        </ul>
-      )}
+        {currentPoints === pokemonTotal ? (
+          <>
+            {" "}
+            <h1>You win</h1>
+            <button
+              onClick={() => {
+                continueGame();
+              }}
+            >
+              Continue
+            </button>
+          </>
+        ) : gameLose ? (
+          <h1>You Lose</h1>
+        ) : (
+          <ul className="cards">
+            {randomPokemons.map((pokemon) => {
+              return (
+                <Card
+                  key={pokemon.uID}
+                  pokemon={pokemon}
+                  shufflePokemon={shufflePokemon}
+                />
+              );
+            })}
+          </ul>
+        )}
 
-      <button
-        onClick={() => {
-          resetGame();
-        }}
-      >
-        Reset
-      </button>
+        <button
+          onClick={() => {
+            resetGame();
+          }}
+        >
+          Reset
+        </button>
+      </div>
     </>
   );
 }

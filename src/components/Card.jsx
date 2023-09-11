@@ -12,7 +12,7 @@ export default function Card({ key, pokemon, shufflePokemon }) {
         <div className="card-image center">
           <img src={pokemon.image} alt={pokemon.name} />
         </div>
-        <div className="card-details ">
+        <div className="card-details center">
           <ul>
             <li className="p-name center">{pokemon.name}</li>
             <li className="center">
