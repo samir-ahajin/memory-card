@@ -27,54 +27,61 @@ function App() {
   return (
     <>
       <div id="main">
-        <div className="pokemon-design center">
-          <div>
-            <img
-              className="pokemon pokemon-logo"
-              src={logo}
-              alt="Pokemon-Logo"
-            />
-          </div>
-          <div className="title-content">
-            <ul className="titles">
-              <li>
-                <h1 className="game-title">MEMORY-CARD GAME</h1>
-              </li>
-              <li>
-                <img
-                  className="pokemon pokeball rotate"
-                  src={pokeball}
-                  alt="pokeball-image"
-                />
-              </li>
-            </ul>
-          </div>
-        </div>
         {game ? (
           levelSelected ? (
-            <RenderGame
-              difficulty={difficulty}
-              resetGame={resetGame}
-              totalPoints={totalPoints}
-              addPoint={addPoint}
-            />
+            <div className="game">
+              <RenderGame
+                difficulty={difficulty}
+                resetGame={resetGame}
+                totalPoints={totalPoints}
+                addPoint={addPoint}
+              />
+            </div>
           ) : (
             <Selection changeDifficulty={changeDifficulty} />
           )
         ) : (
-          <div className="center">
-            <div className="start frame">
-              <ul>
-                <li
-                  onClick={() => {
-                    setGame(true);
-                  }}
-                  className="selection-button"
-                >
-                  Start
-                </li>
-                <li className="selection-button">Github Repo</li>
-              </ul>
+          <div className="start">
+            <div className="pokemon-design center">
+              <div>
+                <img
+                  className="pokemon pokemon-logo"
+                  src={logo}
+                  alt="Pokemon-Logo"
+                />
+              </div>
+              <div className="title-content center">
+                <ul className="titles ">
+                  <li>
+                    <h1 className="game-title">MEMORY-CARD GAME</h1>
+                  </li>
+                  <li>
+                    <img
+                      className="pokemon pokeball rotate"
+                      src={pokeball}
+                      alt="pokeball-image"
+                    />
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div className="center">
+              <div className="frame">
+                <p className="line-1 anim-typewriter">
+                  Please Select.<span className="cursor">|</span>
+                </p>
+                <ul>
+                  <li
+                    onClick={() => {
+                      setGame(true);
+                    }}
+                    className="selection-button"
+                  >
+                    Start
+                  </li>
+                  <li className="selection-button">Github Repo</li>
+                </ul>
+              </div>
             </div>
           </div>
         )}

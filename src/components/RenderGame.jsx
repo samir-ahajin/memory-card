@@ -13,7 +13,7 @@ export default function RenderGame({
   const [randomPokemons, setRandomPokemons] = useState([]);
   const [pokemonGuesses, setPokemonGuesses] = useState([]);
   const [gameLose, setGameLose] = useState(false);
-  const [renderCount, setRenderCount] = useState(2);
+  const [renderCount, setRenderCount] = useState(4);
   const pokemonTotal = renderCount * difficulty;
 
   const getUniqueNumber = (range, length) => {
@@ -89,46 +89,53 @@ export default function RenderGame({
 
   return (
     <>
-      <div>
-        {pokemonTotal}
-        <br />
-        {totalPoints}
+      <div className="gameboard">
+        <div className="scoreBoard">
+          <div>{pokemonTotal}</div>
+          <div> {totalPoints}</div>
+          <div>
+            {" "}
+            <button
+              onClick={() => {
+                resetGame();
+              }}
+            >
+              Reset
+            </button>
+          </div>
+        </div>
 
         {currentPoints === pokemonTotal ? (
           <>
             {" "}
-            <h1>You win</h1>
-            <button
-              onClick={() => {
-                continueGame();
-              }}
-            >
-              Continue
-            </button>
+            <div className="result">
+              <h1>You win</h1>
+              <button
+                onClick={() => {
+                  continueGame();
+                }}
+              >
+                Continue
+              </button>
+            </div>
           </>
         ) : gameLose ? (
           <h1>You Lose</h1>
         ) : (
-          <ul className="cards">
-            {randomPokemons.map((pokemon) => {
-              return (
-                <Card
-                  key={pokemon.uID}
-                  pokemon={pokemon}
-                  shufflePokemon={shufflePokemon}
-                />
-              );
-            })}
-          </ul>
+          <div className="cards-container">
+            <ul className="cards">
+              {randomPokemons.map((pokemon) => {
+                return (
+                  <Card
+                    key={pokemon.uID}
+                    pokemon={pokemon}
+                    shufflePokemon={shufflePokemon}
+                  />
+                );
+              })}
+            </ul>
+          </div>
         )}
-
-        <button
-          onClick={() => {
-            resetGame();
-          }}
-        >
-          Reset
-        </button>
       </div>
     </>
   );

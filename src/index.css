@@ -2,24 +2,30 @@
   font-family: PokemonFont;
   src: url("./assets/Pokemon-GB.ttf");
 }
-body {
-  height: 100vh;
+body,
+html {
   font-family: PokemonFont;
+  height: 100%;
 }
 button {
   font-family: PokemonFont;
 }
 #root {
+  width: 100%;
+  height: auto;
+  min-height: 940px;
   background-image: url("./assets/background-main.gif");
-  height: 100%;
-  background-repeat: no-repeat;
-  background-position: center;
   background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-
+#main {
+  width: 100%;
+}
 .frame {
   position: relative;
   border-image: url("./assets/frame-hd.png") 42 round;
@@ -28,7 +34,8 @@ button {
   border-style: solid;
   padding: 1rem;
   width: 100%;
-  max-width: 250px;
+  max-width: 400px;
+  min-width: 200px;
 }
 
 .center {

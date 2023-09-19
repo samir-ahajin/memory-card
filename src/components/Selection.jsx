@@ -2,7 +2,10 @@ export default function Selection({ changeDifficulty }) {
   return (
     <>
       <div className="center">
-        <div className="start frame">
+        <div className="frame">
+          <p className="line-1 anim-typewriter">
+            Choose Level.<span className="cursor">|</span>
+          </p>
           <ul>
             <li
               onClick={() => {

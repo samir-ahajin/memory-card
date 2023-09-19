@@ -1,19 +1,35 @@
+.game {
+  width: 100%;
+  max-width: 1000px;
+  margin: auto;
+  height: 100%;
+}
+.gameboard {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 60px 1fr;
+}
+.scoreBoard {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  height: 40px;
+  padding: 1rem;
+}
 .pokemon-design {
   width: 100%;
-  margin-bottom: 1rem;
   position: relative;
+  margin-bottom: 1rem;
 }
 .title-content {
-  z-index: 1;
   position: absolute;
-  bottom: 5px;
-  left: 43px;
+  bottom: 0;
 }
 .titles {
   display: grid;
   grid-template-columns: 1fr 50px;
   justify-items: center;
   align-items: center;
+  padding-left: 1em;
 }
 .pokeball {
   max-width: 35px;
@@ -30,55 +46,18 @@
   font-size: 9px;
 }
 
-.cards {
-  display: flex;
-  flex-direction: row;
-  gap: 2px;
-}
-
-.card {
-  display: grid;
-  grid-template-rows: 3fr 1fr;
-  padding: 0.5rem;
-  background-image: url("./assets/cardBackground.jpg");
-  min-width: 120px;
-  height: 180px;
-  background-size: cover;
-  border-radius: 8px;
-}
-.card-image {
-  background-color: rgba(0, 0, 0, 0.5);
-  border-radius: 8px 8px 0 0;
-}
-.card-image img {
-  width: 100px;
-  height: auto;
-}
-
-.card-details {
-  font-size: 8px;
-  border-radius: 0 0 8px 8px;
-  background-color: rgba(255, 255, 255, 0.7);
-}
-.card-details ul {
-  display: grid;
-  gap: 3px;
-  grid-template-rows: 1fr 1fr;
-}
-
 .start {
   padding: 2rem;
 }
 .options li {
   padding-left: 20%;
 }
-.p-name {
-  color: #ff4213;
-  text-transform: uppercase;
-  font-weight: bold;
+.start {
+  display: grid;
+  grid-template-columns: 1fr;
 }
-
 .selection-button {
+  animation: show 3s normal;
   padding: 1rem;
 }
 .selection-button:focus,
@@ -87,7 +66,8 @@
 }
 
 .selection-button:hover::before,
-.selection-button:focus::before {
+.selection-button:focus::before,
+.selection-button:visited::after {
   content: "";
   position: absolute;
   left: -1px;
@@ -106,6 +86,48 @@
 .rotate {
   animation: rotation 5s infinite linear;
 }
+
+.line-1 {
+  position: relative;
+  padding: 1rem 0;
+
+  text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.anim-typewriter {
+  animation: typewriter 1s steps(40) 1s 1 normal both;
+}
+.cursor {
+  font-size: 28px;
+  font-weight: bolder;
+  animation: blinkTextCursor 600ms infinite normal;
+}
+@keyframes typewriter {
+  from {
+    width: 0;
+  }
+  to {
+    width: 24em;
+  }
+}
+@keyframes show {
+  from {
+    visibility: hidden;
+  }
+  to {
+    visibility: visible;
+  }
+}
+@keyframes blinkTextCursor {
+  from {
+    color: rgba(0, 0, 0, 0.75);
+  }
+  to {
+    color: rgba(255, 255, 255, 0.75);
+  }
+}
+
 @keyframes rotation {
   from {
     transform: rotate(0deg);
