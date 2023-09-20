@@ -2,6 +2,7 @@ import { useState } from "react";
 import GetAPokemon from "./Pokemon";
 import { useEffect } from "react";
 import Card from "./Card";
+import Result from "./Modal";
 
 export default function RenderGame({
   difficulty,
@@ -13,7 +14,7 @@ export default function RenderGame({
   const [randomPokemons, setRandomPokemons] = useState([]);
   const [pokemonGuesses, setPokemonGuesses] = useState([]);
   const [gameLose, setGameLose] = useState(false);
-  const [renderCount, setRenderCount] = useState(4);
+  const [renderCount, setRenderCount] = useState(6);
   const pokemonTotal = renderCount * difficulty;
 
   const getUniqueNumber = (range, length) => {
@@ -90,51 +91,62 @@ export default function RenderGame({
   return (
     <>
       <div className="gameboard">
-        <div className="scoreBoard">
-          <div>{pokemonTotal}</div>
-          <div> {totalPoints}</div>
-          <div>
-            {" "}
-            <button
-              onClick={() => {
-                resetGame();
-              }}
-            >
-              Reset
-            </button>
-          </div>
-        </div>
-
         {currentPoints === pokemonTotal ? (
           <>
-            {" "}
-            <div className="result">
-              <h1>You win</h1>
-              <button
-                onClick={() => {
-                  continueGame();
-                }}
-              >
-                Continue
-              </button>
-            </div>
+            <Result
+              win={true}
+              continueGame={continueGame}
+              resetGame={resetGame}
+            />
           </>
         ) : gameLose ? (
-          <h1>You Lose</h1>
+          <>
+            <Result
+              win={false}
+              continueGame={continueGame}
+              resetGame={resetGame}
+            />
+          </>
         ) : (
-          <div className="cards-container">
-            <ul className="cards">
-              {randomPokemons.map((pokemon) => {
-                return (
-                  <Card
-                    key={pokemon.uID}
-                    pokemon={pokemon}
-                    shufflePokemon={shufflePokemon}
-                  />
-                );
-              })}
-            </ul>
-          </div>
+          <>
+            <div className="scoreBoard">
+              <div>
+                <p>
+                  Total Cards:
+                  <span>{pokemonTotal}</span>
+                </p>
+              </div>
+              <div>
+                <p>
+                  Score:
+                  <span>{totalPoints}</span>
+                </p>{" "}
+              </div>
+              <div>
+                {" "}
+                <button
+                  onClick={() => {
+                    resetGame();
+                  }}
+                >
+                  Reset
+                </button>
+              </div>
+            </div>
+            <div className="cards-container">
+              <ul className="cards">
+                {randomPokemons.map((pokemon) => {
+                  return (
+                    <Card
+                      key={pokemon.uID}
+                      pokemon={pokemon}
+                      shufflePokemon={shufflePokemon}
+                    />
+                  );
+                })}
+              </ul>
+            </div>
+          </>
         )}
       </div>
     </>

@@ -2,10 +2,10 @@
 import backImage from "../assets/back.jpg";
 import Tilt from "react-parallax-tilt";
 import "../assets/css/card.css";
-export default function Card({ key, pokemon, shufflePokemon }) {
+export default function Card({ pokemon, shufflePokemon }) {
   return (
     <>
-      <li className="card-item center" key={key}>
+      <li className="card-item center" key={pokemon.UID}>
         <Tilt>
           <div className="flip-card">
             <div className="flip-card-inner">

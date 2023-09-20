@@ -70,17 +70,19 @@ function App() {
                 <p className="line-1 anim-typewriter">
                   Please Select.<span className="cursor">|</span>
                 </p>
-                <ul>
-                  <li
-                    onClick={() => {
-                      setGame(true);
-                    }}
-                    className="selection-button"
-                  >
-                    Start
-                  </li>
-                  <li className="selection-button">Github Repo</li>
-                </ul>
+                <div className="hidden">
+                  <ul>
+                    <li
+                      onClick={() => {
+                        setGame(true);
+                      }}
+                      className="selection-button"
+                    >
+                      Start
+                    </li>
+                    <li className="selection-button">Github Repo</li>
+                  </ul>
+                </div>
               </div>
             </div>
           </div>

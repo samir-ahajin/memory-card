@@ -19,9 +19,6 @@ button {
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: fixed;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 #main {
   width: 100%;
@@ -36,10 +33,22 @@ button {
   width: 100%;
   max-width: 400px;
   min-width: 200px;
+  animation: scaleop 700ms normal ease-in;
 }
 
 .center {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+@keyframes scaleop {
+  from {
+    scale: 0;
+    opacity: 0;
+  }
+  to {
+    scale: 1;
+    opacity: 1;
+  }
 }
