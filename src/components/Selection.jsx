@@ -4,7 +4,7 @@ export default function Selection({ changeDifficulty }) {
       <div className=" center difficulty">
         <div className="frame ">
           <p className="line-1 anim-typewriter">
-            Choose Difficulty.<span className="cursor">|</span>
+            Choose Level.<span className="cursor">|</span>
           </p>
           <div className="hidden">
             <ul>

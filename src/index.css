@@ -13,7 +13,7 @@ button {
 #root {
   width: 100%;
   height: auto;
-  min-height: 940px;
+  min-height: 100%;
   background-image: url("./assets/background-main.gif");
   background-size: cover;
   background-position: center;
@@ -24,15 +24,14 @@ button {
   width: 100%;
 }
 .frame {
+  width: 100%;
   position: relative;
+  max-width: 400px;
   border-image: url("./assets/frame-hd.png") 42 round;
   background-color: white;
   border-width: 21px;
   border-style: solid;
-  padding: 1rem;
-  width: 100%;
-  max-width: 400px;
-  min-width: 200px;
+  margin: 1rem;
   animation: scaleop 700ms normal ease-in;
 }
 

@@ -5,5 +5,7 @@ export default async function GetAPokemon({ id, shiny }) {
   const { name, sprites } = await response.json();
   const image = sprites[shiny ? "front_shiny" : "front_default"];
   const uID = uuidv4();
-  return { name, image, id, shiny, uID };
+
+  const color = shiny ? "shiny" : "not-shiny";
+  return { name, image, id, color, uID };
 }

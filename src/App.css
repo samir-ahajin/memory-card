@@ -7,14 +7,13 @@
 .gameboard {
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 1fr 8fr;
+  grid-template-rows: 200px 1fr;
 }
 .scoreBoard {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   top: 0;
   width: 100%;
-  padding-top: 3rem;
   align-content: center;
   justify-self: center;
   text-align: center;
@@ -70,14 +69,16 @@
 .start {
   display: grid;
   grid-template-columns: 1fr;
-  padding: 2rem;
-  padding-top: 175px;
+  padding: 1rem;
 }
 .difficulty {
-  padding-top: 275px;
+  padding-top: 150px;
 }
 .selection-button {
   padding: 1rem;
+  padding-left: 2rem;
+  width: 100%;
+  max-width: 200px;
 }
 .selection-button:focus,
 .selection-button:active {
@@ -111,7 +112,8 @@
 .line-1 {
   position: relative;
   padding: 1rem 0;
-
+  width: 100%;
+  max-width: 230px;
   text-align: left;
   white-space: nowrap;
   overflow: hidden;

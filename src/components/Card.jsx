@@ -14,11 +14,19 @@ export default function Card({ pokemon, shufflePokemon }) {
               </div>
               <div
                 onClick={() => {
+                  const cards = document.querySelectorAll(".flip-card-inner");
+
+                  cards.forEach((card) => {
+                    card.classList.add("flip");
+                  });
                   shufflePokemon(pokemon.uID);
                 }}
                 className="flip-card-front card"
               >
                 <div className="card-image center">
+                  <div className={"stats center " + pokemon.color}>
+                    <div>SHINY</div>
+                  </div>
                   <img src={pokemon.image} alt={pokemon.name} />
                 </div>
                 <div className="card-details center">

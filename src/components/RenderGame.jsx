@@ -3,6 +3,7 @@ import GetAPokemon from "./Pokemon";
 import { useEffect } from "react";
 import Card from "./Card";
 import Result from "./Modal";
+import { useLayoutEffect } from "react";
 
 export default function RenderGame({
   difficulty,
@@ -12,6 +13,7 @@ export default function RenderGame({
 }) {
   const [currentPoints, setCurrentPoints] = useState(0);
   const [randomPokemons, setRandomPokemons] = useState([]);
+  const [cardShow, setCardShow] = useState(false);
   const [pokemonGuesses, setPokemonGuesses] = useState([]);
   const [gameLose, setGameLose] = useState(false);
   const [renderCount, setRenderCount] = useState(6);
@@ -53,6 +55,7 @@ export default function RenderGame({
         .then((results) => {
           {
             setRandomPokemons(results);
+            setCardShow(true);
           }
         })
         .catch((err) => {
@@ -61,7 +64,17 @@ export default function RenderGame({
     })();
   }, [renderCount]);
 
-  const shufflePokemon = (selected) => {
+  useEffect(() => {
+    setTimeout(() => {
+      setCardShow(true);
+    }, 800);
+  }, [randomPokemons]);
+
+  const shufflePokemon = async (selected) => {
+    setTimeout(() => {
+      setCardShow(false);
+    }, 800);
+
     if (pokemonGuesses.includes(selected)) {
       setGameLose(true);
     } else {
@@ -77,10 +90,10 @@ export default function RenderGame({
       for (let index = 0; index < pokemons.length; index++) {
         temp.push(pokemons[randomArray[index] - 1]);
       }
-
       setRandomPokemons([...temp]);
     }
   };
+
   const continueGame = () => {
     setRandomPokemons([]);
     setRenderCount(renderCount + 1);
@@ -134,17 +147,24 @@ export default function RenderGame({
               </div>
             </div>
             <div className="cards-container">
-              <ul className="cards">
-                {randomPokemons.map((pokemon) => {
-                  return (
-                    <Card
-                      key={pokemon.uID}
-                      pokemon={pokemon}
-                      shufflePokemon={shufflePokemon}
-                    />
-                  );
-                })}
-              </ul>
+              {cardShow ? (
+                <>
+                  {" "}
+                  <ul className="cards">
+                    {randomPokemons.map((pokemon) => {
+                      return (
+                        <Card
+                          key={pokemon.uID}
+                          pokemon={pokemon}
+                          shufflePokemon={shufflePokemon}
+                        />
+                      );
+                    })}
+                  </ul>
+                </>
+              ) : (
+                <></>
+              )}
             </div>
           </>
         )}
