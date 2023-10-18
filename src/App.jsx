@@ -1,15 +1,32 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 
 import "./App.css";
 import Selection from "./components/Selection";
 import RenderGame from "./components/RenderGame";
 import logo from "./assets/pokemon-logo.png";
 import pokeball from "./assets/pokeball.png";
+import playAudio from "./components/playAudio";
+import intro from "./assets/soundtracks/intro_littleroot.mp3";
+
 function App() {
   const [game, setGame] = useState(false);
   const [levelSelected, setLevelSelected] = useState(false);
   const [difficulty, setDifficulty] = useState(1);
   const [totalPoints, setTotalPoints] = useState(0);
+  const [playing, setPlaying] = useState(false);
+  const [mute, setMute] = useState(true);
+  const [audioTrack, setAudioTrack] = useState(intro);
+
+  useEffect(() => {
+    playAudio(audioTrack, mute, "change", playing);
+  }, [audioTrack, playing]);
+  useEffect(() => {
+    if (mute == false && playing == false) {
+      setPlaying(!playing);
+      playAudio(audioTrack, mute, "play", playing);
+    }
+    playAudio(audioTrack, mute, "mute", playing);
+  }, [mute, playing]);
 
   const changeDifficulty = (level) => {
     setDifficulty(level);
@@ -24,13 +41,30 @@ function App() {
     setTotalPoints(totalPoints + 1);
   };
 
+  const togglePlay = () => {
+    setMute(!mute);
+  };
+
+  const changeMusic = (audio) => {
+    setAudioTrack(audio);
+  };
   return (
     <>
       <div id="main">
+        <button
+          id="play-button"
+          onClick={() => {
+            togglePlay();
+          }}
+        >
+          Mute
+        </button>
+
         {game ? (
           levelSelected ? (
             <div className="game">
               <RenderGame
+                changeMusic={changeMusic}
                 difficulty={difficulty}
                 resetGame={resetGame}
                 totalPoints={totalPoints}
@@ -38,7 +72,10 @@ function App() {
               />
             </div>
           ) : (
-            <Selection changeDifficulty={changeDifficulty} />
+            <Selection
+              changeMusic={changeMusic}
+              changeDifficulty={changeDifficulty}
+            />
           )
         ) : (
           <div className="start">

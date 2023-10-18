@@ -1,4 +1,15 @@
-export default function Result({ win, continueGame, resetGame }) {
+import intro from "../assets/soundtracks/intro_littleroot.mp3";
+import ingame from "../assets/soundtracks/f-game.mp3";
+import resultAudio from "../assets/soundtracks/result.mp3";
+export default function Result({ changeMusic, win, continueGame, resetGame }) {
+  (() => {
+    if (win == true) {
+      changeMusic(resultAudio);
+    } else {
+      changeMusic(resultAudio);
+    }
+  })();
+
   return (
     <>
       <div className="result center">
@@ -9,6 +20,7 @@ export default function Result({ win, continueGame, resetGame }) {
               <button
                 onClick={() => {
                   continueGame();
+                  changeMusic(ingame);
                 }}
               >
                 Continue
@@ -19,7 +31,7 @@ export default function Result({ win, continueGame, resetGame }) {
               <h1>You Lose</h1>
               <button
                 onClick={() => {
-                  resetGame();
+                  resetGame(intro);
                 }}
               >
                 Reset

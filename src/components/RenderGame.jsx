@@ -3,9 +3,10 @@ import GetAPokemon from "./Pokemon";
 import { useEffect } from "react";
 import Card from "./Card";
 import Result from "./Modal";
-import { useLayoutEffect } from "react";
-
+import intro from "../assets/soundtracks/intro_littleroot.mp3";
+import game2 from "../assets/soundtracks/result.mp3";
 export default function RenderGame({
+  changeMusic,
   difficulty,
   resetGame,
   totalPoints,
@@ -16,7 +17,7 @@ export default function RenderGame({
   const [cardShow, setCardShow] = useState(false);
   const [pokemonGuesses, setPokemonGuesses] = useState([]);
   const [gameLose, setGameLose] = useState(false);
-  const [renderCount, setRenderCount] = useState(6);
+  const [renderCount, setRenderCount] = useState(2);
   const pokemonTotal = renderCount * difficulty;
 
   const getUniqueNumber = (range, length) => {
@@ -32,6 +33,7 @@ export default function RenderGame({
     }
     return number;
   };
+
   useEffect(() => {
     (async () => {
       let pokemons = [];
@@ -107,6 +109,7 @@ export default function RenderGame({
         {currentPoints === pokemonTotal ? (
           <>
             <Result
+              changeMusic={changeMusic}
               win={true}
               continueGame={continueGame}
               resetGame={resetGame}
@@ -139,6 +142,7 @@ export default function RenderGame({
                 {" "}
                 <button
                   onClick={() => {
+                    changeMusic(intro);
                     resetGame();
                   }}
                 >
