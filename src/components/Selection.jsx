@@ -1,6 +1,4 @@
-import audioGame from "../assets/soundtracks/f-game.mp3";
-
-export default function Selection({ changeMusic, changeDifficulty }) {
+export default function Selection({ changeDifficulty }) {
   return (
     <>
       <div className=" center difficulty">
@@ -13,7 +11,6 @@ export default function Selection({ changeMusic, changeDifficulty }) {
               <li
                 onClick={() => {
                   changeDifficulty(1);
-                  changeMusic(audioGame);
                 }}
                 className="selection-button"
               >
@@ -22,7 +19,6 @@ export default function Selection({ changeMusic, changeDifficulty }) {
               <li
                 onClick={() => {
                   changeDifficulty(2);
-                  changeMusic(audioGame);
                 }}
                 className="selection-button"
               >
@@ -31,7 +27,6 @@ export default function Selection({ changeMusic, changeDifficulty }) {
               <li
                 onClick={() => {
                   changeDifficulty(3);
-                  changeMusic(audioGame);
                 }}
                 className="selection-button"
               >

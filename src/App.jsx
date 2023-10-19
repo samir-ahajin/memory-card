@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 
 import "./App.css";
 import Selection from "./components/Selection";
@@ -7,7 +7,10 @@ import logo from "./assets/pokemon-logo.png";
 import pokeball from "./assets/pokeball.png";
 import playAudio from "./components/playAudio";
 import intro from "./assets/soundtracks/intro_littleroot.mp3";
-
+import click from "./assets/soundtracks/clicked.mp3";
+import audioGame from "./assets/soundtracks/f-game.mp3";
+import muteImage from "./assets/mute.png";
+import unmuteImage from "./assets/volume.png";
 function App() {
   const [game, setGame] = useState(false);
   const [levelSelected, setLevelSelected] = useState(false);
@@ -26,13 +29,17 @@ function App() {
       playAudio(audioTrack, mute, "play", playing);
     }
     playAudio(audioTrack, mute, "mute", playing);
-  }, [mute, playing]);
+  }, [mute, playing, audioTrack]);
 
   const changeDifficulty = (level) => {
+    playEffect(click);
+    changeMusic(audioGame);
     setDifficulty(level);
     setLevelSelected(true);
   };
   const resetGame = () => {
+    playEffect(click);
+    changeMusic(intro);
     setTotalPoints(0);
     setGame(false);
     setLevelSelected(false);
@@ -45,25 +52,41 @@ function App() {
     setMute(!mute);
   };
 
-  const changeMusic = (audio) => {
-    setAudioTrack(audio);
+  function changeMusic(audio, r = false) {
+    if (r == false) {
+      setAudioTrack(audio);
+    } else {
+      playEffect(final);
+    }
+  }
+  const playEffect = (audio) => {
+    let effects = new Audio(audio);
+
+    effects.play();
+    effects.loop = false;
+    effects.volume = 0.5;
   };
   return (
     <>
       <div id="main">
-        <button
-          id="play-button"
+        <div
+          className="mute"
           onClick={() => {
             togglePlay();
           }}
         >
-          Mute
-        </button>
+          {mute ? (
+            <img src={muteImage} alt="muteButton" />
+          ) : (
+            <img src={unmuteImage} alt="muteButton" />
+          )}
+        </div>
 
         {game ? (
           levelSelected ? (
             <div className="game">
               <RenderGame
+                playEffect={playEffect}
                 changeMusic={changeMusic}
                 difficulty={difficulty}
                 resetGame={resetGame}
@@ -72,10 +95,7 @@ function App() {
               />
             </div>
           ) : (
-            <Selection
-              changeMusic={changeMusic}
-              changeDifficulty={changeDifficulty}
-            />
+            <Selection changeDifficulty={changeDifficulty} />
           )
         ) : (
           <div className="start">
@@ -111,13 +131,21 @@ function App() {
                   <ul>
                     <li
                       onClick={() => {
+                        playEffect(click);
                         setGame(true);
                       }}
                       className="selection-button"
                     >
                       Start
                     </li>
-                    <li className="selection-button">Github Repo</li>
+                    <li
+                      className="selection-button"
+                      onClick={() => {
+                        playEffect(click);
+                      }}
+                    >
+                      Github Repo
+                    </li>
                   </ul>
                 </div>
               </div>

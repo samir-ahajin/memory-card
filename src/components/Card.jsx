@@ -2,27 +2,39 @@
 import backImage from "../assets/back.jpg";
 import Tilt from "react-parallax-tilt";
 import "../assets/css/card.css";
-export default function Card({ pokemon, shufflePokemon }) {
+import click from "../assets/soundtracks/clicked.mp3";
+export default function Card({
+  pokemon,
+  shufflePokemon,
+  playEffect,
+  showCards,
+}) {
   return (
     <>
-      <li className="card-item center" key={pokemon.UID}>
+      {" "}
+      <li className="card-item center" key={pokemon.uID}>
         <Tilt>
-          <div className="flip-card">
+          <div
+            className="flip-card"
+            onClick={() => {
+              playEffect(click);
+              const cards = document.querySelectorAll(".flip-card-inner");
+              cards.forEach((card) => {
+                card.classList.add("flip");
+              });
+
+              setTimeout(() => {
+                shufflePokemon(pokemon.uID);
+              }, 600);
+
+              showCards();
+            }}
+          >
             <div className="flip-card-inner">
               <div className="flip-card-back">
                 <img src={backImage} className="back-card-image" alt="card" />
               </div>
-              <div
-                onClick={() => {
-                  const cards = document.querySelectorAll(".flip-card-inner");
-
-                  cards.forEach((card) => {
-                    card.classList.add("flip");
-                  });
-                  shufflePokemon(pokemon.uID);
-                }}
-                className="flip-card-front card"
-              >
+              <div className="flip-card-front card">
                 <div className="card-image center">
                   <div className={"stats center " + pokemon.color}>
                     <div>SHINY</div>

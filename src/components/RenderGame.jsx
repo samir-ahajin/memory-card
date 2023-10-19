@@ -3,9 +3,12 @@ import GetAPokemon from "./Pokemon";
 import { useEffect } from "react";
 import Card from "./Card";
 import Result from "./Modal";
-import intro from "../assets/soundtracks/intro_littleroot.mp3";
 import game2 from "../assets/soundtracks/result.mp3";
+import ingame from "../assets/soundtracks/f-game.mp3";
+import final from "../assets/soundtracks/gamedone.mp3";
+
 export default function RenderGame({
+  playEffect,
   changeMusic,
   difficulty,
   resetGame,
@@ -67,16 +70,24 @@ export default function RenderGame({
   }, [renderCount]);
 
   useEffect(() => {
-    setTimeout(() => {
-      setCardShow(true);
-    }, 800);
-  }, [randomPokemons]);
+    if (currentPoints == pokemonTotal) {
+      changeMusic(game2);
+    } else {
+      if (gameLose == true) {
+        playEffect(final);
+      }
+    }
+  }, [currentPoints, gameLose]);
 
-  const shufflePokemon = async (selected) => {
+  useEffect(() => {
+    setCardShow(true);
+  });
+  const showCards = () => {
     setTimeout(() => {
       setCardShow(false);
-    }, 800);
-
+    }, 600);
+  };
+  const shufflePokemon = async (selected) => {
     if (pokemonGuesses.includes(selected)) {
       setGameLose(true);
     } else {
@@ -97,6 +108,7 @@ export default function RenderGame({
   };
 
   const continueGame = () => {
+    changeMusic(ingame);
     setRandomPokemons([]);
     setRenderCount(renderCount + 1);
     setGameLose(false);
@@ -142,7 +154,6 @@ export default function RenderGame({
                 {" "}
                 <button
                   onClick={() => {
-                    changeMusic(intro);
                     resetGame();
                   }}
                 >
@@ -160,7 +171,9 @@ export default function RenderGame({
                         <Card
                           key={pokemon.uID}
                           pokemon={pokemon}
+                          playEffect={playEffect}
                           shufflePokemon={shufflePokemon}
+                          showCards={showCards}
                         />
                       );
                     })}

@@ -9,9 +9,10 @@ export default function playAudio(audio, mute, status, playing) {
   if (playing === false) {
     return;
   }
+
   if (status == "mute") {
     if (mute == false) {
-      music.volume = 0.7;
+      music.volume = 0.4;
     } else {
       music.volume = 0;
     }

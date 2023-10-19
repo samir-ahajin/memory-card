@@ -1,41 +1,66 @@
-import intro from "../assets/soundtracks/intro_littleroot.mp3";
-import ingame from "../assets/soundtracks/f-game.mp3";
-import resultAudio from "../assets/soundtracks/result.mp3";
-export default function Result({ changeMusic, win, continueGame, resetGame }) {
-  (() => {
-    if (win == true) {
-      changeMusic(resultAudio);
-    } else {
-      changeMusic(resultAudio);
-    }
-  })();
-
+import loseGame from "../assets/lose.gif";
+import winGame from "../assets/celebrate.gif";
+export default function Result({ win, continueGame, resetGame }) {
   return (
     <>
       <div className="result center">
         <div className="frame ">
           {win === true ? (
             <>
-              <h1>You win</h1>
-              <button
-                onClick={() => {
-                  continueGame();
-                  changeMusic(ingame);
-                }}
-              >
-                Continue
-              </button>
+              {" "}
+              <div className="center">
+                <img className="imageResult" src={winGame} alt="winGif" />
+              </div>
+              <div className="indentation">
+                <p className="line-1 anim-typewriter">
+                  You win ! :)<span className="cursor">|</span>
+                </p>{" "}
+                <div className="hidden">
+                  <ul>
+                    <li
+                      onClick={() => {
+                        continueGame();
+                      }}
+                      className="selection-button"
+                    >
+                      Continue
+                    </li>
+                    <li
+                      onClick={() => {
+                        resetGame();
+                      }}
+                      className="selection-button"
+                    >
+                      Reset
+                    </li>
+                  </ul>
+                </div>
+              </div>
             </>
           ) : (
             <>
-              <h1>You Lose</h1>
-              <button
-                onClick={() => {
-                  resetGame(intro);
-                }}
-              >
-                Reset
-              </button>
+              {" "}
+              <div className="center">
+                <img className="imageResult" src={loseGame} alt="loseGif" />
+              </div>{" "}
+              <div className="indentation">
+                <p className="line-1 anim-typewriter">
+                  You Lose :(<span className="cursor">|</span>
+                </p>
+
+                <div className="hidden">
+                  <ul>
+                    <li
+                      onClick={() => {
+                        resetGame();
+                      }}
+                      className="selection-button"
+                    >
+                      Reset
+                    </li>
+                  </ul>
+                </div>
+              </div>
             </>
           )}
         </div>
