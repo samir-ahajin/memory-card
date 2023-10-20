@@ -1,6 +1,8 @@
-<br>
 # Memory Card
+
+<br>
 The **Memory Card** project is created according to the assignment from **The Odin Project** #[course](https://www.theodinproject.com/paths/full-stack-javascript/courses/javascript).
+<br>
 
 - Used and installed **React** with the help of **vite**
 - Effectively used useEffect
