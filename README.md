@@ -8,6 +8,6 @@ The **Memory Card** project is created according to the assignment from **The Od
 
 # Other Projects
 
-- See my previous project [CV-Creator](https://github.com/samir-ahajin/cv-creator)<br>
-- See my other projects [todo-list](https://github.com/samir-ahajin/todo-list)
-- See my other projects [Weather-App](https://github.com/samir-ahajin/weather-app)
+- See my previous project ##[CV-Creator](https://github.com/samir-ahajin/cv-creator)<br>
+- See my other projects ##[todo-list](https://github.com/samir-ahajin/todo-list).<br>
+- See my other projects ##[Weather-App](https://github.com/samir-ahajin/weather-app).
