@@ -1,12 +1,23 @@
+a {
+  color: black;
+  text-decoration: none;
+}
 .mute {
   position: fixed;
-  bottom: 5px;
-  left: 5px;
+  right: 5px;
+  top: 5px;
   z-index: 1000;
 }
 .mute img {
-  width: 50px;
+  width: 40px;
   height: auto;
+}
+.mute img:hover {
+  scale: 1.2;
+  animation: none;
+}
+.unmute {
+  animation: scaleImage 600ms infinite;
 }
 
 .game {
@@ -18,11 +29,11 @@
 .gameboard {
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 200px 1fr;
+  grid-template-rows: 200px 1fr 50px;
 }
 .scoreBoard {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
   top: 0;
   width: 100%;
   align-content: center;
@@ -73,7 +84,15 @@
   letter-spacing: 2px;
   font-size: 9px;
 }
-
+#scores {
+  padding: 1rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 40px 1fr;
+}
+#scores ul li {
+  padding: 4px;
+}
 .options li {
   padding-left: 20%;
 }
@@ -83,6 +102,21 @@
   min-width: 100px;
   height: auto;
   padding: 1rem;
+}
+#winner {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+.note {
+  text-align: center;
+  font-size: 12px;
+  line-height: 1.2;
+  padding: 10px;
+  background-color: #f0b538;
+}
+.red {
+  font-weight: lighter;
+  color: red;
 }
 .indentation {
   padding-left: 1rem;
@@ -178,5 +212,14 @@
   }
   to {
     transform: rotate(359deg);
+  }
+}
+
+@keyframes scaleImage {
+  from {
+    scale: 1;
+  }
+  to {
+    scale: 1.2;
   }
 }

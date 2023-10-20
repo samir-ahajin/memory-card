@@ -8,6 +8,7 @@ import ingame from "../assets/soundtracks/f-game.mp3";
 import final from "../assets/soundtracks/gamedone.mp3";
 
 export default function RenderGame({
+  adjustScoreBoard,
   playEffect,
   changeMusic,
   difficulty,
@@ -20,7 +21,7 @@ export default function RenderGame({
   const [cardShow, setCardShow] = useState(false);
   const [pokemonGuesses, setPokemonGuesses] = useState([]);
   const [gameLose, setGameLose] = useState(false);
-  const [renderCount, setRenderCount] = useState(2);
+  const [renderCount, setRenderCount] = useState(4);
   const pokemonTotal = renderCount * difficulty;
 
   const getUniqueNumber = (range, length) => {
@@ -63,18 +64,18 @@ export default function RenderGame({
             setCardShow(true);
           }
         })
-        .catch((err) => {
-          console.log(err);
-        });
+        .catch((err) => {});
     })();
   }, [renderCount]);
 
   useEffect(() => {
     if (currentPoints == pokemonTotal) {
+      adjustScoreBoard(difficulty);
       changeMusic(game2);
     } else {
       if (gameLose == true) {
-        playEffect(final);
+        adjustScoreBoard(difficulty);
+        playEffect(final, totalPoints);
       }
     }
   }, [currentPoints, gameLose]);
@@ -115,6 +116,16 @@ export default function RenderGame({
     setCurrentPoints(0);
   };
 
+  const returnDiff = () => {
+    switch (difficulty) {
+      case 1:
+        return "EASY";
+      case 2:
+        return "MEDIUM";
+      case 3:
+        return "HARD";
+    }
+  };
   return (
     <>
       <div className="gameboard">
@@ -125,6 +136,7 @@ export default function RenderGame({
               win={true}
               continueGame={continueGame}
               resetGame={resetGame}
+              totalPoints={totalPoints}
             />
           </>
         ) : gameLose ? (
@@ -133,11 +145,15 @@ export default function RenderGame({
               win={false}
               continueGame={continueGame}
               resetGame={resetGame}
+              totalPoints={totalPoints}
             />
           </>
         ) : (
           <>
             <div className="scoreBoard">
+              <div>
+                <p>Difficulty : {returnDiff()}</p>
+              </div>
               <div>
                 <p>
                   Total Cards:
@@ -147,9 +163,10 @@ export default function RenderGame({
               <div>
                 <p>
                   Score:
-                  <span>{totalPoints}</span>
+                  <span className="red">{totalPoints}</span>
                 </p>{" "}
               </div>
+
               <div>
                 {" "}
                 <button
@@ -182,6 +199,11 @@ export default function RenderGame({
               ) : (
                 <></>
               )}
+            </div>
+            <div className="center">
+              <p className="note">
+                Don't click on the same card <span className="red">TWICE</span>
+              </p>
             </div>
           </>
         )}

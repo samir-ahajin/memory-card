@@ -1,6 +1,6 @@
 import loseGame from "../assets/lose.gif";
 import winGame from "../assets/celebrate.gif";
-export default function Result({ win, continueGame, resetGame }) {
+export default function Result({ win, continueGame, resetGame, totalPoints }) {
   return (
     <>
       <div className="result center">
@@ -9,7 +9,15 @@ export default function Result({ win, continueGame, resetGame }) {
             <>
               {" "}
               <div className="center">
-                <img className="imageResult" src={winGame} alt="winGif" />
+                <div id="winner">
+                  <div className="center">
+                    <img className="imageResult" src={winGame} alt="winGif" />
+                  </div>
+                  <p className="note">
+                    When you select <span className="red">CONTINUE</span> the
+                    number of cards increases !
+                  </p>
+                </div>
               </div>
               <div className="indentation">
                 <p className="line-1 anim-typewriter">
@@ -41,7 +49,15 @@ export default function Result({ win, continueGame, resetGame }) {
             <>
               {" "}
               <div className="center">
-                <img className="imageResult" src={loseGame} alt="loseGif" />
+                <div id="winner">
+                  <div className="center">
+                    <img className="imageResult" src={loseGame} alt="loseGif" />
+                  </div>
+                  <p className="note">
+                    Your final score is{" "}
+                    <span className="red">{totalPoints}</span> .
+                  </p>
+                </div>{" "}
               </div>{" "}
               <div className="indentation">
                 <p className="line-1 anim-typewriter">
