@@ -1,8 +1,10 @@
 # Memory Card
 
 <br>
-The **Memory Card** project is created according to the assignment from **The Odin Project** #[course](https://www.theodinproject.com/paths/full-stack-javascript/courses/javascript).
+The **Memory Card** project is created according to the assignment from The Odin Project.
 <br>
+
+##Memo-Card Game [Click here](https://memory-card-f3j.pages.dev/).
 
 - Used and installed **React** with the help of **vite**
 - Effectively used useEffect
