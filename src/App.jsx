@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-import "./App.css";
+import "./assets/css/App.css";
 import Selection from "./components/Selection";
 import RenderGame from "./components/RenderGame";
 import logo from "./assets/pokemon-logo.png";
